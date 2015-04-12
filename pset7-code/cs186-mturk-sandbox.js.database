@@ -1,29 +1,29 @@
-// begin:de57
+// begin:b14e
 __HITs = {
 }
 __S3_Objects = {
-	"http://s3.amazonaws.com/AKIAJ4LACYKBFFYVFL5A.TurKit/09xa0z7jhk20dsxig08q4qf797t6zkha.html" : {
+	"http://s3.amazonaws.com/AKIAJ4LACYKBFFYVFL5A.TurKit/wk7s5pj0hsdo64slihh0g2c05wi6b6at.html" : {
 	}
 }
 __stackFrames = {
 	"for-real" : {
 		"sequencialFrames" : [
 			{
-				"creationTime" : 1.428866930766E12,
+				"creationTime" : 1.428869598137E12,
 				"onceFunc" : "\nfunction () {\n    return s3.putStringRaw(bucketName, key, stringData);\n}\n",
-				"returnValue" : "http://s3.amazonaws.com/AKIAJ4LACYKBFFYVFL5A.TurKit/09xa0z7jhk20dsxig08q4qf797t6zkha.html",
-				"returnTime" : 1.428866933607E12,
-				"printOutput" : "S3 object put at: http://s3.amazonaws.com/AKIAJ4LACYKBFFYVFL5A.TurKit/09xa0z7jhk20dsxig08q4qf797t6zkha.html\n"
+				"returnValue" : "http://s3.amazonaws.com/AKIAJ4LACYKBFFYVFL5A.TurKit/wk7s5pj0hsdo64slihh0g2c05wi6b6at.html",
+				"returnTime" : 1.428869598272E12,
+				"printOutput" : "S3 object put at: http://s3.amazonaws.com/AKIAJ4LACYKBFFYVFL5A.TurKit/wk7s5pj0hsdo64slihh0g2c05wi6b6at.html\r\n"
 			},
 			{
-				"creationTime" : 1.428866963636E12,
+				"creationTime" : 1.428869598275E12,
 				"onceFunc" : "\nfunction () {\n    return mturk.createHITRaw(params);\n}\n"
 			}
 		]
 	}
 }
 __safetyCounters = {
-	"moneySpent" : 0.06,
-	"hitsCreated" : 3
+	"moneySpent" : 0.02,
+	"hitsCreated" : 1
 }
-// end:de57
+// end:b14e

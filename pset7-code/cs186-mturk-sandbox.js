@@ -10,13 +10,13 @@ var page = createWebpageFromTemplate(
 
 // TO-DO define the HIT parameters.
 var hitParams = {
-        title : "Pick-a-Number",
+        title : "Pick a Number",
         desc : "Pick a random number between 1 and 10.",
         url : page,
-        height : 800,
+  height : 800,
         reward : 0.02,
-    autoApprovalDelayInSeconds : 60
-    }
+      autoApprovalDelayInSeconds : 60
+    };
 
 // Create the HIT
 var hit = mturk.createHIT(hitParams)
