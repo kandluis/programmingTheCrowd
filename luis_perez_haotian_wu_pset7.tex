@@ -14,6 +14,46 @@
 \pagestyle{empty}
 
 
+% Used for JavaScript Code
+% \documentclass{article}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+
 \newcommand{\points}[1]{\textbf{[#1 Points]}}
 \newcommand{\extracredit}{\mbox{\textbf{[Extra Credit]}}}
 
@@ -21,7 +61,7 @@
 
 \title{CS 186 Assignment 7:\\
 Programming The Crowd}
-\author{Professor David C. Parkes \\School of Engineering and Applied Sciences, Harvard University\\
+\author{Tiffany (Haotian) Wu and Luis Antonio Perez, Harvard University\\
 Out Monday April 6, 2015\\
 Due {\bf 5pm} sharp: {\bf Tuesday April 14, 2015}\\
 (Extension School: Wednesday April 15)
@@ -30,36 +70,7 @@ Due {\bf 5pm} sharp: {\bf Tuesday April 14, 2015}\\
 
 \maketitle
 
-\noindent {\bf Total points: 70}. Your goal is to use the TurkIt library in order to 
-write tasks that will be executed on Amazon's Mechanical Turk (AMT). This is a group assignment to be completed
-by groups of \textbf{up to 2 students} (single-person for extension school). 
-While you are permitted to discuss your designs with other students, each group must write their own code and explanations.
-If you want a partner and don't have one, post to Piazza as early as possible. 
-\\
-
-\noindent {\bf Submission Instructions:}
-\begin{enumerate}
-\item Your submissions should be made to the assignment Dropbox on iSites,
-as a zip file.
-\item Make sure to put the names of your team members in your write-up
-\item Include in the zip file your write-up, primer.html, cs186-mturk-intro.js, cs186-mturk-sandbox.js, cs186-mturk-nuclei.js, cs186-mturk-sort.js, and other supporting files.
-
-\item You will get
-points for completing the exercises, and {\bf should present evidence of your work
-on AMT such as screenshots, .csv log files, worker/job IDs.}
-
-\item Please start early on this assignment. The approval process for an account on Amazon Mechanical Turk might take up to 48 hours. 
-
-\end{enumerate} 
-
 \smallskip
-
-\textbf{Amazon Mechanical Turk Norms:} When you post tasks on Turk you
-have the option to review and reject responses from workers. Please
-accept all tasks completed in a reasonable way. [There is one
-exception in the nuclei counting experiment.] Otherwise, this will
-affect your reputation as a requester and possibly other fellow
-students who will be running similar experiments.
 
 \begin{enumerate}
 \item \points{10} {\bf Introduction}
@@ -68,14 +79,25 @@ Your goal in this part of the exercise is to learn about AMT and the TurkIt fram
 and get acquainted with the basic terminology (worker, requester, HIT, etc)
 \begin{enumerate}
 
-\item[(a)] \points{4} Read about AMT from sources of your choice including Amazon's website. 
-Why was that particular name chosen? Comment in a few sentences, on the slogan ``Artificial Intelligence." 
+\item[(a)] \points{4} 
+The name "Mechanical Turk" is a reference to a chess-playing automata of the 18th century that toured Europe beating people, and was later revealed to be a chess master hidden in the machine. Similarly, human computing is actually utilized in these tasks that are (in this day and age) hard for computers to be good at.
+
+The slogan of ``Artificial Artificial Intelligence'' is intended to be a play on the development of artificial intelligence \footnote{\href{http://en.wikipedia.org/wiki/Amazon_Mechanical_Turk}{Wikipedia on Amazon Mechanical Turk}}. Amazon turk accomplishes tasks typically associated with artificial intelligence through the use of actual humans, thereby making it non-artifical, or, to use the slogal, ``artificial artificial intelligence''. The slogan is clever marketing as it demonstrates an embracement of the inability to achieve ``true'' artificial intelligence. For more, see \href{https://www.mturk.com/mturk/help?helpPage=main}{FAQs}.
+
 %
-\item[(b)] \points{3} Watch the demo video on TurkIt here \url{http://groups.csail.mit.edu/uid/turkit/} What did the last task involve and how was it accomplished?
+\item[(b)] \points{3} 
+The last task involved giving a description of an image. The task was accomplished by navigating to the page for the generated HIT, which displayed an image of leaves and sticks, and then inputting the description into a single text box, followed by submission.
+
+After 30 seconds, TurKit re-ran the program and captured the results from the first accomplished hit, generating a new hit which asked users to verify the input from the first. 
+
 %
-\item[(c)] \points{3} Report on a recent article in 
-the news about AMT that you find interesting 
-and briefly comment on it. 
+\item[(c)] \points{3} 
+
+Link: \href{http://www.theverge.com/2014/12/4/7331777/amazon-mechanical-turk-workforce-digital-labor}{A Digital Laborforce}
+
+Here, we have an article about people who chose MTurk as careers who wish to be recognized as real human beings, and not just an algorithm for completing simple tasks. Amazon often markets MTurk as a resource for getting small tasks completed, but sometimes paints workers as unskilled laborers who don't deserve appreciation for their contributions. Workers often feel unappreciated and unsupported as Amazon does not provide support in the case of scams among other things. 
+
+I think it's very interesting that MTurk has evolved to have these sorts of problems, but I wonder that even if Amazon changes their marketing strategy, or people begin to be more cognizant of the workers their HITs are completed by, that anything will change.
 \end{enumerate}
 
 
@@ -93,24 +115,41 @@ IDE where you can run and test code can be found here
 \url{http://jsfiddle.net/} (not necessary for this assignment).
 %
 \begin{enumerate}
-\item \points{2} Open the \texttt{primer.html} attached with this code package with a text editor.
-You will see the \texttt{<script..></script>} where Javascript code is located. Read and 
-understand what the code is doing and then open the file with a browser. 
-As an exercise rewrite Line 30 (\texttt{obj.add = X}) by replacing $X$ with only 4 characters such that 
-the code maintains the same functionality. 
-%
-\item \points{4} Create an object \texttt{Algebra} with the following:\\
-(i) a property \texttt{operation} equal to the string ``multiplication" \\
-(ii) a property \texttt{mul} that is a function
-to compute the product of its two arguments, i.e.
-\texttt{Algebra.mul(a,b)} calculates \texttt{a.b} \\
-(iii) a property \texttt{genprod} that is a 
-function accepting two arguments: $n$ and $f$, where 
-$n$ is a positive integer and $f$ is a function 
-\texttt{Algebra.genprod(n, f)} computes the value:
-\texttt{f(1)} $\cdot$ \texttt{ f(2)} $\cdots$ \texttt{f(n)}\\
-(iv) What does \texttt{Algebra.genprod(n, function(x) \{ return x\})} calculate?
-%
+\item \points{2} 
+We can rewrite line 30 as follows, which with only three characters, defines the same functionality:
+\begin{lstlisting}
+obj.add = add 
+\end{lstlisting}
+
+%Open the \texttt{primer.html} attached with this code package with a text editor.
+%You will see the \texttt{<script..></script>} where Javascript code is located. Read and 
+%understand what the code is doing and then open the file with a browser. 
+%As an exercise rewrite Line 30 (\texttt{obj.add = X}) by replacing $X$ with only 4 characters such that 
+%the code maintains the same functionality. 
+\item \points{4} 
+The object of type algebra can be defined as follows:
+\begin{lstlisting}
+var Algebra = {
+  operation : "multiplication",
+  mul : function mult(x,y){return x*y},
+  genprod : function prod(n,f){
+    if(n==0) {
+      return 1;
+    }
+    else {
+      var r = prod(n-1,f);
+      return r * f(n);
+    }
+  }
+ };
+\end{lstlisting}
+From the above, we can see that we have a (i) a property \texttt{operation} equal to the string ``multiplication", (ii)  a property \texttt{mul} that is a function
+to compute the product of its two arguments, and (iii) a property \texttt{genprod}. 
+
+As for (iv), \texttt{Algebra.genprod(n, function(x) \{ return x \})} calculates the $n!$.
+
+Note: Some might be curious as to why we didn't simply use \texttt{ this....} to reference the defined functions recursively. The explanation for the curiosity can be found \href{http://stackoverflow.com/questions/9006587/javascript-object-literal-method-recursive-call}{here}, where our method is explained as superior.
+
 \end{enumerate}
 %
 \item \points{8} {\bf Login/Setup}
@@ -120,26 +159,124 @@ In this section you create an Amazon Web Services (AWS) account, which is necess
 \begin{enumerate}
 \item \points{1} Go to \url{http://aws.amazon.com/} and create an account (if you don't have one already). Also make a worker and requester account at AMT's home page here \url{https://www.mturk.com/mturk/welcome}
 %
-\item \points{2} Work for 20mins on AMT and make as much money as you can. Share your experience by providing brief details and evidence of your work.
+\item \points{2} 
+The experience was interesting, and just as I remember it previously. The user interface is rather poor, as can be seen from Figure %TODO .
+
+
+At first, I had some difficulty accepting hits due to the interface, but after a while, I realized how. My first hit consisted of the simple problem of submitting where I lived. I was paid $\$0.02$ for this hit, which is interesting, considering that most of the time, I give out this information willingly. The hit can be see in Figure \ref{fig:state_survey}.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{state_survey}
+\caption{My first HIT done for the benefit of cs186!}
+\label{fig:state_survey}
+\end{figure}
+
+Another intersting event that occured was that for some hits, you had to submit a CAPTCHA (weird? is it possible that some people have figured out how to automate some of the tasks on mTurk)?. As can be seen from Figure \ref{fig:accept_hit}, you're sometimes asked to verify that you're human before you can accept a hit.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{accept_hit}
+\caption{Asked to verify that I am human! Isn't that crazy!}
+\label{fig:accept_hit}
+\end{figure}
+
+Another curiosity about the entire experience is that there appears to be (1) a severe lack of well-paying HITs as well as (2) a huge number of hits that require prior qualifications. Either way, if you sort the hits, by reward, the first thing that pops out is that all of the hits high paying hits are by the same organization (something called SpeechPad). This information is summarized in Figure \ref{fig:qualifications} and Figure \ref{fig:speech_pad}.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{high_reward}
+\includegraphics[scale=0.5]{parent_hit}
+\caption{Most high paying hits in mTurk require previous qualifications. Some of them even require you to fit certain social criteria (be a parent).}
+\label{fig:qualifications}
+\end{figure}
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{speech_pad}
+\caption{The top paying hits are all by the same company/organization - SpeechPad.}
+\label{fig:speech_pad}
+\end{figure}
+
+In the end, I was able to find some relatively high paying taskts which involved clicking on advertisements on other sites. I don't immediately see the purporse of these tasks, but they paid on average $\$1.00$ and took about $5$ minutes to complete, which seems to be a good return compared to other HITs on the site. As can be seen in Figure \ref{fig:results} , I didn't get that much work done or that much money. It seems like 20 minutes is just not enough. A lot of it was spent just looking for hits rather than making money. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{hit_total}
+\includegraphics[scale=0.5]{three_hits}
+\caption{Total payment (includes some from previous uses of mTurk) as well as hits completed within the 20 minute period. It seems like the hits take longer to complete than expected. A lot of time is spent looking for more HITs.}
+\label{fig:results}
+\end{figure}
+
+
+Work for 20mins on AMT and make as much money as you can. Share your experience by providing brief details and evidence of your work.
 %
 [\textbf{Note:} Some high-reward HITs require disclosure of private information like taxes or medical records. Avoid such tasks.]
 %
-\item \points{2} Download the TurkIt framework from \url{http://groups.csail.mit.edu/uid/turkit/} . It is a .jar file which should be easy to run once you 
-have Java installed. Then watch the TurKit video again, crucially the part where 
-the programmer sets the account credentials (00:27-00:37) and sets TurkIt ``Properties." Follow 
-the exact same steps but using your own AWS access key.
+\item \points{2} See Figure \ref{fig:create_access_key} and \ref{fig:downloaded_TurkIT}
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=.3]{create_access_key.png}
+\caption{Creating an Access Key Pair}
+\label{fig:create_access_key}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=.25]{downloaded.png}
+\caption{TurkIt Framework is a go.}
+\label{fig:downloaded_TurkIT}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=.25]{docs.png}
+\caption{Reviewing the docs for \texttt{mturk} object}
+\label{fig:review_docs}
+\end{figure}
+
 % 
-\item \points{1} Your master object in a TurkIt application is \texttt{mturk}.
-This is your main interface to TurkIt 
-functionality. Review the functions associated with this object here: \\ \url{http://groups.csail.mit.edu/uid/turkit/jsdocs/symbols/MTurk.html}
+\item \points{1} See Figure \ref{fig:review_docs} for browsing  \url{http://groups.csail.mit.edu/uid/turkit/jsdocs/symbols/MTurk.html}
 %
-\item \points{2} Load \$7 to your account through the VISA number that
-will be provided over email. As a next step, open the
-\texttt{cs186-mturk-intro.js} and fill in the missing code that
-prints the cash balance of your account (remember to set the mode
-from ``sandbox" to ``real" according to the TurkIt video).
+\item \points{2} 
+See Figure \ref{fig:load_money} for loading \$7.
+
+See Figure \ref{fig:mode_real} for changing the parameters in TurkIt.
+
+See below for the solutions to the warm-up problem:
+\begin{lstlisting}
+print("Hello MTurk!")
+print("Your balance is: " + mturk.getAccountBalance()  )
+print("No. of hits: "+ mturk.getHITs().length )
+
+// Explore the HIT object. 
+// Get the first HIT and then iterate over its properties.
+if(mturk.getHITs().length > 0) {
+  var hitObj = mturk.getHIT(0, true) 
+  for(attr in hitObj) 
+    print("Attr ="+attr+ " val="+hitObj[attr])
+}
+\end{lstlisting}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=.25]{visa.png}
+\caption{Purchasing Prepaid HITs}
+\label{fig:load_money}
+\end{figure}
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=.25]{real.png}
+\caption{Changing maxMoney and mode of TurkIt.}
+\label{fig:mode_real}
+\end{figure}
 %This will print the available amount of money in your account. 
 \end{enumerate}
+
 
 \item \points{10} {\bf The ``Sandbox"}
 
@@ -151,21 +288,33 @@ As a first HIT, you will ask workers to pick
 a number from 1 to 10, first debugging in the Sandbox.
 %
 \begin{enumerate}
-\item \points{4} Open the \texttt{cs186-mturk-sandbox} file. 
-Complete it to create the ``Pick-a-number" HIT, choose Sandbox and then ``Run." 
-TurkIt will give you the link where the HIT is posted. Click on it and attach a snapshot of it.
-Here is our HIT for reference:
+\item \points{4}
+Here is our HIT in the sandbox:
 %
 \begin{figure}[h]
 \begin{center}
-%\includegraphics[scale=0.4]{images/randnum.png}
+\includegraphics[scale=0.25]{sandbox_hit.png}
 \end{center}
-\caption{A Posted task in the Sandbox}
+\caption{Our task in the sandbox}
 \end{figure}
 %
+And here is the parameter code that we added. Note the additional \texttt{makeSecure} function required due to mTurk's new security features:
+\begin{lstlisting}
+function makeSecure(url) {
+  return url.substring(0, 4) + "s" + url.substring(4);
+}
 
-[\textbf{Note:} If you are having trouble viewing your HIT content in your browser, please try another one. HIT cannot display properly in some browsers, e.g. Chrome and Firefox, due to security settings.]
-\item \points{6} As a ``Requester" you can monitor your HITs. Here is the link:
+var hitParams = {
+  title : "Pick a Number",
+  desc : "Pick a random number between 1 and 10.",
+  url : makeSecure(page),
+  height : 800,
+  reward : 0.02
+}
+\end{lstlisting}
+
+\item \points{6} 
+As a ``Requester" you can monitor your HITs. Here is the link:
 At the ``Manage" tab (\url{https://requester.mturk.com/manage}), click on the 
 ``Manage HITs individually." 
 There you can see the open HITs, review submissions from workers and 
@@ -178,15 +327,39 @@ a simple HIT like this one is probably around 2 cents.
 %
 \begin{figure}[h]
 \begin{center}
-%\includegraphics[scale=0.4]{images/randnum-real.png}
+\includegraphics[scale=0.3]{random_number}
+\includegraphics[scale=0.3]{manage_random_number}
 \end{center}
-\caption{Posted tasks in the ``Manage" console}
+\caption{Posted tasks live and in the ``Manage" console}
 \end{figure}
 
+The answers submitted were: $\{8,5,44,7,3,..5,..6,\}$. Of course, the 44 answer was rejected by our code as we're looking for random numbers between 1 and 10. The numbers actually appear to be relatively random, but this is a very small sample size. If we're to subcribe to behavioral economics, I'd expect that with a larger sample size, we'd beging to see inputs from the set $\{0,5,10 \}$  more often than expected from a uniform distribution. A snippet of the code is shown below:
+
+\begin{lstlisting}
+var hitIDs = new Array(5);
+for(var i = 0; i < hitIDs.length; i++){
+  // create the hit
+  hitIDs[i] = mturk.createHIT(hitParams)
+  print("-----------------")
+  print("Hit created  : "+ hitIDs[i])
+  print("-----------------")
+  var hit = mturk.waitForHIT(hitIDs[i])
+
+  // verify the hit is random between 0 and 10
+  var input = hit.assignments[0].answer.newText
+  print("Input "+input)
+  var iinput = parseInt(input)
+  if (0 <= iinput && iinput <= 10){
+    mturk.approveAssignment(hit.assignments[0])
+  }
+  else {
+    mturk.rejectAssignment(hit.assignments[0])
+    i--
+  }
+}
+\end{lstlisting}
+However, it still took  a long time to run and wait for all five responses. It seems that no one wanted to make quick few cents. The price definitely needed to be increased, but given the low priority of this assignment, we decided to leave the payment at $\$0.02$ and just wait it out. It's interesting to note that the assignments seem to take much longer if not immediately accepted.
 \end{enumerate}
-
-
-\newpage
 \item \points{16} {\bf Nuclei Counting}
 
 Some tasks are computationally hard but easy for people. An example of
@@ -205,46 +378,25 @@ having to check the MTurk website yourself.
 %
 \begin{enumerate}
 \item[(a)] \points{1} Read the \texttt{createHIT(.)} function from the TurKit API. What is the object 
-used as an argument? List the parameters and explain what they do. 
+used as an argument? List the parameters and explain what they do.
+
+It is \texttt{params}, with the following parameters:
+\begin{itemize}
+\item \texttt{title} - the text that is displayed in the list of HITs
+\item \texttt{desc} - also show, but not as the bolded text
+\item \texttt{question (url, height)} - a string of XML that is what will be displayed in the iframe.
+\end{itemize}
 %
 \item[(b)] \points{3}
-Open the source file \texttt{cs186-mturk-nuclei.js} 
-in the TurkIt editor.
-Fill in the code in the function \texttt{createNucleiHIT(argCost)}
-to create the nuclei counting task (the \texttt{argCost}
-is the money you are willing to spend for this HIT).
+We set \texttt{argCost=0.20} initially because we figured that if inaccurate, we wouldn't have to pay, so we would only need to pay one worker for a reasonably accurate estimate. Thus, we could afford to have a higher payout for this.
 
--- \framebox{ Do not run your HIT yet!}
 %
-\item[(c)] \points{5} It is usually the case that HIT responses are of
-low quality, especially for tasks that do not require worker
-qualifications. This can be mitigated using the TurkIt
-\texttt{mturk.vote()} function, which allows a requester to
-ask for other workers to vote on the quality of the response.
-If the majority vote is positive you should accept the output
-of the count HIT, and otherwise you should reject it (in this particular
-case you would end-up rejecting a HIT.)
+\item[(c)] \points{5} We chose
+\texttt{argNucleiCount=0.03} because we figured we'd need lots of votes anyway, and since they're only confirming whether or not the count was correct, they didn't need as much monetary incentive. 
 
-In the same source file, fill in the appropriate code in function
-\texttt{vote(argNucleiCount, argVoteCost)}. (Note that
-\texttt{argNucleiCount} is the number of nuclei given in the response
-to the nuclei-counting HIT. )
+\item[(d)] \points{3} We set 
+\texttt{maxAssignments} to 3 because 2/3 votes is dependable enough.
 
-\item[(d)] \points{3} Read the \texttt{vote(.)} function, use
-\texttt{maxAssignments} to define the minimum number of votes necessary for a single choice, and determine the payments for the nuclei-counting HIT and the voting HITs.
-
-Make sure everything is fine and press ``Run"!
-
--- \framebox{Save at least 70\% of your budget for the rest
-of the assignment!}
-
-[\textbf{Note:} After the counting HIT is created, TurKit will exit,
-waiting for an answer. As long as there is no answer for this 
-HIT, the voting HITs \textbf{will not} be created, even if you click
-the ``Run" button again. Only one voting HIT will be created but with multiple assignments.]
-% This is because TurKit maintains a cache and
-% remembers HITs that are pending.]
-%
 \item[(e)] \points{4} Visit your AMT homepage as Requester, 
 and wait until a response is submitted. When this happens, 
 run \texttt{cs186-mturk-intro.js} to access the HIT response(s)
@@ -253,8 +405,28 @@ and check the status of your HITs.
 What did you find?
 Explain what you see, how much you spent, the count
 obtained, the votes, and
-give snapshots for your HITs.
+give snapshots for your HITs.\medskip 
 %
+\\We ran this twice. 
+
+The first time, count price was \$ 0.20, and the vote reward was \$ .03. The count obtained was 150, and it took around 50 seconds for the worker to count after 30 minutes of the HIT going live. 
+
+The votes trickled in around the next few hours, mainly because we assigned such a low reward, but the vote ultimately rejected the estimate of 150 (probably because voters assumed that the count was inaccurate.)
+
+The second time, the count price was raised to \$0.50 to encourage accurate counts, and a response was received within 10 minutes. The votes still trickled in.
+
+
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.3]{nuclei_count}
+\includegraphics[scale=0.3]{nuclei_vote}
+\end{center}
+\caption{Pictures of our Nuclei HITs - both count and vote.}
+\end{figure}
+
+
 \end{enumerate}
 
 \item \points{20} {\bf Image Sorting}
