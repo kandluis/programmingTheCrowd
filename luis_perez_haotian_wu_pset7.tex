@@ -22,6 +22,9 @@
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 
+%for comments and what
+\usepackage{verbatim}
+
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
   keywordstyle=\color{blue}\bfseries,
@@ -102,21 +105,9 @@ I think it's very interesting that MTurk has evolved to have these sorts of prob
 
 
 \item \points{6} {\bf Javascript primer }
-
-Javascript is the scripting language that supports the vast majority
-of modern dynamic web applications (Web 2.0+). When a page loads,
-Javascript code works in the background, pushes and polls data from
-the server, and updates parts of the webpage, thus giving the
-impression of a normal desktop application.
-
-There are numerous resources for JavaScript on the Web. A nice e-book
-can be found here \url{http://eloquentjavascript.net/}. A nice online
-IDE where you can run and test code can be found here
-\url{http://jsfiddle.net/} (not necessary for this assignment).
-%
 \begin{enumerate}
 \item \points{2} 
-We can rewrite line 30 as follows, which with only three characters, defines the same functionality:
+We can rewrite line 30 as follows, which, with only three characters, defines the same functionality:
 \begin{lstlisting}
 obj.add = add 
 \end{lstlisting}
@@ -131,7 +122,7 @@ The object of type algebra can be defined as follows:
 \begin{lstlisting}
 var Algebra = {
   operation : "multiplication",
-  mul : function mult(x,y){return x*y},
+  mul : function (x,y){return x*y},
   genprod : function prod(n,f){
     if(n==0) {
       return 1;
@@ -148,22 +139,26 @@ to compute the product of its two arguments, and (iii) a property \texttt{genpro
 
 As for (iv), \texttt{Algebra.genprod(n, function(x) \{ return x \})} calculates the $n!$.
 
-Note: Some might be curious as to why we didn't simply use \texttt{ this....} to reference the defined functions recursively. The explanation for the curiosity can be found \href{http://stackoverflow.com/questions/9006587/javascript-object-literal-method-recursive-call}{here}, where our method is explained as superior.
+Note: Some might be curious as to why we didn't simply use \texttt{ this } to reference the defined functions recursively. The explanation for the curiosity can be found \href{http://stackoverflow.com/questions/9006587/javascript-object-literal-method-recursive-call}{here}, where our method is explained as superior.
 
 \end{enumerate}
 %
 \item \points{8} {\bf Login/Setup}
 
-In this section you create an Amazon Web Services (AWS) account, which is necessary to work with the TurkIt platform, and an AMT account. 
-%
 \begin{enumerate}
-\item \points{1} Go to \url{http://aws.amazon.com/} and create an account (if you don't have one already). Also make a worker and requester account at AMT's home page here \url{https://www.mturk.com/mturk/welcome}
-%
+\item \points{1} Tifanny created the requester account, I created the worker account. Evidence for this can be found through the screenshots for other problem answers. However, see Figure \ref{fig:worker_account} for direct proof.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{worker_account}
+\caption{Screen shot of worker account dashboard for Amazon Turk}
+\label{fig:worker_account}
+\end{figure}
+
 \item \points{2} 
-The experience was interesting, and just as I remember it previously. The user interface is rather poor, as can be seen from Figure %TODO .
+The experience was interesting, and just as I remember it previously. The user interface is rather poor.
 
-
-At first, I had some difficulty accepting hits due to the interface, but after a while, I realized how. My first hit consisted of the simple problem of submitting where I lived. I was paid $\$0.02$ for this hit, which is interesting, considering that most of the time, I give out this information willingly. The hit can be see in Figure \ref{fig:state_survey}.
+At first, I had some difficulty accepting hits due to the interface, but after a while, I figured out how. My first hit consisted of the simple problem of submitting where I lived. I was paid $\$0.02$ for this hit, which is interesting, considering that most of the time, I give out this information willingly. The hit can be see in Figure \ref{fig:state_survey}.
 
 \begin{figure}[!h]
 \centering
@@ -209,13 +204,7 @@ In the end, I was able to find some relatively high paying taskts which involved
 \label{fig:results}
 \end{figure}
 
-
-Work for 20mins on AMT and make as much money as you can. Share your experience by providing brief details and evidence of your work.
-%
-[\textbf{Note:} Some high-reward HITs require disclosure of private information like taxes or medical records. Avoid such tasks.]
-%
 \item \points{2} See Figure \ref{fig:create_access_key} and \ref{fig:downloaded_TurkIT}
-
 
 \begin{figure}[!h]
 \centering
@@ -244,9 +233,9 @@ Work for 20mins on AMT and make as much money as you can. Share your experience 
 \item \points{2} 
 See Figure \ref{fig:load_money} for loading \$7.
 
-See Figure \ref{fig:mode_real} for changing the parameters in TurkIt.
+See Figure \ref{fig:mode_real} for changing the parameters in TurkIt to include our new AWS Key as well as setting it to run in ``real'' mode. 
 
-See below for the solutions to the warm-up problem:
+Below, you will be able to find the solution to the wamr-up problem which allows us to view our balance. The balance on our account on first run was $\$7.00$:
 \begin{lstlisting}
 print("Hello MTurk!")
 print("Your balance is: " + mturk.getAccountBalance()  )
@@ -279,23 +268,16 @@ if(mturk.getHITs().length > 0) {
 
 
 \item \points{10} {\bf The ``Sandbox"}
-
-The ``Sandbox" is a useful tool when developing AMT applications.
-The url is here \url{https://requester.mturk.com/developer/sandbox
-}. You can use the sandbox from TurkIt by selecting it as one of
-the choices in TurkIt just above the editor.
-As a first HIT, you will ask workers to pick
-a number from 1 to 10, first debugging in the Sandbox.
-%
 \begin{enumerate}
 \item \points{4}
-Here is our HIT in the sandbox:
+In Figure \ref{fig:sandbox_hit} you can find our HIT in the sandbox:
 %
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.25]{sandbox_hit.png}
 \end{center}
-\caption{Our task in the sandbox}
+\caption{Our task in the sandbox.}
+\label{fig:sandbox_hit}
 \end{figure}
 %
 And here is the parameter code that we added. Note the additional \texttt{makeSecure} function required due to mTurk's new security features:
@@ -314,26 +296,16 @@ var hitParams = {
 \end{lstlisting}
 
 \item \points{6} 
-As a ``Requester" you can monitor your HITs. Here is the link:
-At the ``Manage" tab (\url{https://requester.mturk.com/manage}), click on the 
-``Manage HITs individually." 
-There you can see the open HITs, review submissions from workers and 
-agree on payments. In this task, ask 5 workers to pick a random number. You will need to run in ``Real" mode
-and attach a snapshot )e.g., see the one below.) 
-Also don't forget to review the submissions and pay your workers.
-Write down the answers and comment on how ``random" the choices were. Also write down how long it took
-to get all 5 answers and comment. A suitable payment for
-a simple HIT like this one is probably around 2 cents.
-%
-\begin{figure}[h]
+\begin{figure}[!h]
 \begin{center}
 \includegraphics[scale=0.3]{random_number}
 \includegraphics[scale=0.3]{manage_random_number}
 \end{center}
 \caption{Posted tasks live and in the ``Manage" console}
+\label{fig:random_number_hit}
 \end{figure}
 
-The answers submitted were: $\{8,5,44,7,3,..5,..6,\}$. Of course, the 44 answer was rejected by our code as we're looking for random numbers between 1 and 10. The numbers actually appear to be relatively random, but this is a very small sample size. If we're to subcribe to behavioral economics, I'd expect that with a larger sample size, we'd beging to see inputs from the set $\{0,5,10 \}$  more often than expected from a uniform distribution. A snippet of the code is shown below:
+The screenshot of the hit can be seen in Figure \ref{fig:random_number_hit}. The answers submitted were: $\{8,5,44,7,3,..5,..6,55,5\}$, in that order. Of course, the 44, ..5,..6, and 55 answers were rejected by our code as we're looking for random numbers between 1 and 10. Interestingly enough, not removing the ``..'' from the input text box seems to have led some people to submit that with their answer (probably because they're trying to do it as soon as possible). The numbers actually appear to be relatively random, but this is a very small sample size. If we're to subcribe to behavioral economics, I'd expect that with a larger sample size, we'd begin to see inputs from the set $\{0,5,10 \}$  more often than expected due to the bias people tend to have towards those numbers. Additionally, while we asked people to pick a random number between 1 and 10, no on attempted to input a decimal. All the numbers were whole integers, though this was never explicitly required. A snippet of the code is shown below:
 
 \begin{lstlisting}
 var hitIDs = new Array(5);
@@ -358,67 +330,71 @@ for(var i = 0; i < hitIDs.length; i++){
   }
 }
 \end{lstlisting}
-However, it still took  a long time to run and wait for all five responses. It seems that no one wanted to make quick few cents. The price definitely needed to be increased, but given the low priority of this assignment, we decided to leave the payment at $\$0.02$ and just wait it out. It's interesting to note that the assignments seem to take much longer if not immediately accepted.
+
+However, it still took  a long time to run and wait for all five responses (over a day). It seems that no one wanted to make quick few cents. The price definitely needed to be increased, but given the low priority of this assignment, we decided to leave the payment at $\$0.02$ and just wait it out. It's interesting to note that the assignments seem to take much longer if not immediately accepted.
 \end{enumerate}
+
 \item \points{16} {\bf Nuclei Counting}
 
-Some tasks are computationally hard but easy for people. An example of
-such a task is image analysis for biological studies.
-%
-In this exercise, your task is to use AMT to count nuclei in an image
-depicting many different cells. The code resides in
-\texttt{cs186-mturk-nuclei.js}, and includes a link to the image. When
-ready, it will first create a HIT that will post an image and ask a
-worker to count the number of nuclei.
-
-When a response arrives, you will 
-run the same script again to process the results. There are two ways to do this: (i) Run the script once, check periodically your MTurk Requester home page and run the script once again when there is an answer, and (ii) Run the script in ``Run Repeatedly"-mode which will get the answer soon after it arrives without 
-having to check the MTurk website yourself. 
-{\em We recommend (i) because we found (ii) to be buggy in our runs but feel free to experiment!}
-%
 \begin{enumerate}
-\item[(a)] \points{1} Read the \texttt{createHIT(.)} function from the TurKit API. What is the object 
-used as an argument? List the parameters and explain what they do.
-
-It is \texttt{params}, with the following parameters:
+\item[(a)] 
+It is \texttt{params}, an object which JavaScript terms an associative array. In other languages, it's typically known as a dictionary or mapping. The parameters are:
 \begin{itemize}
 \item \texttt{title} - the text that is displayed in the list of HITs
-\item \texttt{desc} - also show, but not as the bolded text
-\item \texttt{question (url, height)} - a string of XML that is what will be displayed in the iframe.
+\item \texttt{desc} - also shown, but not as the bolded text above
+\item \texttt{question (url, height)} - a string of XML that is what will be displayed in the iframe. url can be a pointer to a page, and then that is loaded into the iframe. Heigh is self explanatory. 
 \end{itemize}
 %
 \item[(b)] \points{3}
-We set \texttt{argCost=0.20} initially because we figured that if inaccurate, we wouldn't have to pay, so we would only need to pay one worker for a reasonably accurate estimate. Thus, we could afford to have a higher payout for this.
+The code modifications we made to create the nuclei hit are shown below:
+\begin{lstlisting}
+ return mturk.createHIT({
+        title: "Count Nuclei in Picture",
+        desc : "Count the total number of nuclei (dots) in a picture. Your output will be voted on for accuracy, and your payment dependent on that vote.",
+        question: q,
+        reward: argCost
+    })
+\end{lstlisting}
 
 %
-\item[(c)] \points{5} We chose
-\texttt{argNucleiCount=0.03} because we figured we'd need lots of votes anyway, and since they're only confirming whether or not the count was correct, they didn't need as much monetary incentive. 
+\item[(c)] \points{5}
+The code modifications are below:
+\begin{lstlisting}
+var voteHitId = mturk.createHIT({
+        title: "Vote on Nuclei Counts in Picture",
+        desc : "Vote whether or not another worker's count is accurate. Count is of nuclei in an image.",
+        question: q,
+        reward: argVoteCost,
+        maxAssignments: 3
+    });
+\end{lstlisting}
 
-\item[(d)] \points{3} We set 
-\texttt{maxAssignments} to 3 because 2/3 votes is dependable enough.
 
-\item[(e)] \points{4} Visit your AMT homepage as Requester, 
-and wait until a response is submitted. When this happens, 
-run \texttt{cs186-mturk-intro.js} to access the HIT response(s)
-and check the status of your HITs.
+\item[(d)] \points{3} We set \texttt{maxAssignments} to 3 because 2/3 votes is dependable enough. As for the payments, we can see their final value in the code below:
+\begin{lstlisting}
+var nucleiHITcost = 0.50
+...
+var votingCost = 0.10
+if (vote(ansCount, votingCost)) {
+    mturk.approveAssignment(hit.assignments[0])
+    print("\nConsensus reached!\n")
+} else {
+    mturk.rejectAssignment(hit.assignments[0])
+    print("\nNumber "+ansCount+" was not voted as correct\n")
+}    
+\end{lstlisting}
+We set \texttt{argCost=0.20} initially because we figured that if inaccurate, we wouldn't have to pay, so we would only need to pay one worker for a reasonably accurate estimate. Thus, we could afford to have a higher payout for this. However, the low payout turned out to be insufficient and was later changed to \texttt{argCost=0.50}. We also set \texttt{votingCost = 0.10} because the workers will only have to verify the counts. A payment of \$0.10 seems reasonable for such a simple task.
 
-What did you find?
-Explain what you see, how much you spent, the count
-obtained, the votes, and
-give snapshots for your HITs.\medskip 
-%
-\\We ran this twice. 
+\item[(e)] \points{4} 
+We ran this twice. 
 
 The first time, count price was \$ 0.20, and the vote reward was \$ .03. The count obtained was 150, and it took around 50 seconds for the worker to count after 30 minutes of the HIT going live. 
 
 The votes trickled in around the next few hours, mainly because we assigned such a low reward, but the vote ultimately rejected the estimate of 150 (probably because voters assumed that the count was inaccurate.)
 
-The second time, the count price was raised to \$0.50 to encourage accurate counts, and a response was received within 10 minutes. The votes still trickled in.
+The second time, the count price was raised to \$0.50 to encourage accurate counts, and a response was received within 10 minutes. The votes still trickled in and continue to do so at this moment. At the end of our experimenting, our account balance was $\$5.745$.
 
-
-
-
-\begin{figure}[h]
+\begin{figure}[!h]
 \begin{center}
 \includegraphics[scale=0.3]{nuclei_count}
 \includegraphics[scale=0.3]{nuclei_vote}
@@ -426,63 +402,121 @@ The second time, the count price was raised to \$0.50 to encourage accurate coun
 \caption{Pictures of our Nuclei HITs - both count and vote.}
 \end{figure}
 
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[scale=0.3]{turkit_proof}
+\end{center}
+\caption{The HITs in TurkIt.}
+\end{figure}
 
 \end{enumerate}
 
 \item \points{20} {\bf Image Sorting}
+For the image sorting, task the pseudo code is likely to look something like this:
+\begin{lstlisting}
+// modified implementatation of merge sort
+function compare(x,y){
+    var hit = False
+    while(!hit){
+        // create new hit
+        // create a voting hit
+        // check results
+        if (voted positively){
+            hit = true
+        }
+    }
+    
+    // return x if x <= y otheriwise y
+}
 
-Now that you're familiar with TurkIt and AMT, the goal in this
-exercise is to use AMT to sort 8 images of Harvard year into temporal
-order (earliest in time first). The goal is to get a reliably high
-quality sort for the budget available. There is no need to save any
-budget.
 
-This exercise is deliberately open-ended and you can be imaginative in
-your design. To get a good quality output, you will need to use
-multiple workers and have a clever way to process responses. However,
-more workers will cost you more, and you need to stay on budget.
-Before you start, you will need to think about how many image
-comparisons will be needed, how many workers to request per
-comparison, and how much to pay.
+function merge(xs,ys){
+    // given two sorted arrays of images, merges them 1 by 1 using turk for comparison
+    
+    // compare sorted arrays, one by one, by creating a new hit per comparison
+    iterate over x <- xs and y <- ys {
+        // compare x with y and place into new merged array
+    }
+}
 
-The file \texttt{cs186-mturk-sort-images.js} contains code that places
-one image next to another image and asks a question of a worker. The
-code also includes the images themselves as {\tt imgur.com} links.
+function mergesort(x){
+    // split the list in half (unless size is 1, in which case exit)
+    
+    // mergesort left
+    // mergesort right
+    
+    // return merge (left,right)
+}
+\end{lstlisting}
+We think that merge sort is a good idea in this task simply because it requires the least number of comparsions. With this in mind, we can probably pay each worker slightly more, hopefully encouraging correctness of the sorting. Additionally, it seems like there already exists a sort function within turk, which would come in hand if it does what we thinkg it does. 
 
-You can get 15 points for completing the assignment based on the code
-provided, and an extra 5 points for implementing an an extension to
-the design. 
-%
-For example, it might be more cost-effective to use a different HIT
-design; e.g., you might want to place more than 2 images on the same
-page, have different sizes, or different HTML inputs, etc.
+Another idea that we've had for this is to provide more context for the image sorting -- in this sense, we provide more images to be sorted at once. Behaviorally, this should help the worker more accurately sequence the images. In this scenario, we can probably break the images into all possible subsets of 4, and then have have a worker arrange each, with additional input votes from other workers. Given all of these arrangements, we can then take the best one (the one most people agreed on) for each image comparion, and sort that way. This method would not only decrease the total number of hits needed (since we're asking people to do more than one comparison per hit), but it would aso increase our accuracy because we'd achieve multiple verification methods. 
 
-Clearly describe your approach by including:
-\begin{enumerate}
-\item The HTML code that was shown to workers (with a snapshot)
-\item The payments and/or voting mechanisms you had in place
-\item The submissions from workers (with a few snapshots)
-\item The final ordering obtained by your human computation
-algorithm, and some of the intermediate algorithmic steps in obtaining
-the ordering.
-\item Any experiments you performed to pick the optimal design.
+\begin{comment}
+* The Below Can Be Ignored *
+
+you're the worst. :) THE WORST.
+
+HI :)
+
+You love me. 
+
+Let's be clear.
+
+false.
+
+Patently false.
+
+...watch us forget to delete this and it'll end up in the final writeup.
+
+That would be hilarious :)
+
+I would not be against that. 
+
+Let's do it.
+
+Hi Professor Parkes!
+
+Also, we should work on our project proposal.
+
+Are you going to bed soon? Always time tomorrow. please? After 2:30, I am free.
+
+Of course :) 
+
+OK i set a bad example. I changed my mind. no more smiley faces.
+
+:(
+
+emoticons are for wimps.
+
+You wana go? Huh. You wanna go, punk?
+
+I'll fight you, no problem.
+
+I've never hit a girl before. 
+
+FISTICUFFS. 
+
+:))))))
+:)
+ ew
+ sucks
+ :Dy
+ our:De
+ rwerwkelitsknfksnknosnkdvnslknvijns io ihskvnsiv
+ :)
+ ...
+ d
+ isgusting.
+ Also, sorry for wokrong on this, but there was a piazza post. We needed pseudocode for 6.
+ ...ew.
+ thanks, brah.
+ np. 
+ 
+ Imma leave this here.NO
+ \end{comment}
+
 \end{enumerate}
-
-Remember to provide evidence of work on AMT in order to receive full
-credit.
-But be reasonable in deciding how much information to include. We're looking
-for enough to understand your approach, understand what it did on
-this input, and why you ended up with this design. For this you can
-use a few snapshots in various places. But it might not be reasonable
-to provide a full documentation. 
-
-[\textbf{Note:} No prior knowledge on the order of images should
-be used in your design!]
-
-\end{enumerate}
-
-
-
 \end{document}
 
 
