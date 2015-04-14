@@ -59,8 +59,19 @@ target/
 
 # ignore PDF files
 *.pdf
+# ignore .zip files
+*.zip
+
+# ignore old database files
+*.database*
+*.old*
+
+# ignore jpeg files
+*.jpg
+*.jpeg
 
 # ignore latex intermidiate files
 *.aux
-*.synctex.gz
+*.synctex.gz*
 *.out
+
